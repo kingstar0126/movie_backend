@@ -1,0 +1,39 @@
+{
+  "name": "project-movie-back-end",
+  "version": "1.0.0",
+  "description": "zid-be-project-movie-01-qualified",
+  "main": "src/app.js",
+  "scripts": {
+    "docker:build": "docker image build . -t thinkful-ed/zid-be-project-movie-01-qualified",
+    "docker:run": "docker run --rm -it -p 5001:5001 thinkful-ed/zid-be-project-movie-01-qualified",
+    "docker:stop": "docker stop $(docker ps -q)",
+    "docker:test": "docker run -t  thinkful-ed/zid-be-project-movie-01-qualified npm test",
+    "knex": "knex",
+    "migrate": "knex migrate:latest",
+    "reset": "npm run rollback && npm run migrate && npm run seed",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "start": "node src/server.js",
+    "start:dev": "nodemon src/server.js",
+    "start:solution": "docker-compose up --build",
+    "test": "jest",
+    "test:solution": "docker-compose build && docker-compose run --rm api npm test && docker-compose down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "knex": "^0.21.21",
+    "morgan": "^1.10.0",
+    "pg": "^8.8.0",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
+    "supertest": "^6.1.3"
+  }
+}
